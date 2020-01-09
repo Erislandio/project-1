@@ -1,0 +1,51 @@
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  phone: String! 
+  document: String! 
+  password: String!
+  name: String!
+  lastname: String!
+  address: [Address] 
+  assessments: [Assessment]
+}
+
+enum Stars {
+  ONE
+  TWO
+  THREE
+  FOUR
+  FIVE
+}
+
+type Provider {
+  id: ID! @id
+  email: String! @unique
+  phone: String! @unique
+  name: String!
+  type: String
+  assessments: [Assessment]
+  description: String
+  address: [Address!]
+}
+
+type Assessment {
+  id: ID! @id
+  owner: User! @relation(link: INLINE)
+  description: String!
+  title: String!
+  star: Stars
+}
+
+type Address {
+  id: ID! @id
+  zipcode: String!
+  street: String!
+  neighborhood: String!
+  number: String!
+  city: String!
+  country: String!
+  state: String!
+  complement: String
+}
